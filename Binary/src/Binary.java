@@ -15,37 +15,36 @@ import javax.swing.JTextField;
 public class Binary extends JPanel implements ActionListener {
 
    private static final long serialVersionUID = -2803257217038020759L;
-   JPanel                    board;                                                                    // Panel
-                                                                                                        // for
-                                                                                                        // buttons
-   JPanel                    canvas;                                                                   // Panel
-                                                                                                        // for
-                                                                                                        // drawing
-                                                                                                        // on
-   JButton                   convert;                                                                  // buttons
-                                                                                                        // for
-                                                                                                        // the
-                                                                                                        // GUI
+   // Panel for buttons
+   JPanel                    board;
+   // Panel for drawing on
+   JPanel                    canvas;
+   // buttons for the GUI
+   JButton                   convert;
    JButton                   reset;
    JButton                   bindec;
-   JTextField                decimalstring;                                                            // Input
-                                                                                                        // box
+   JTextField                decimalstring;
    JLabel                    outputarea;
-   ImageIcon                 num0             = new ImageIcon(getClass().getResource("/images/0.gif"));
-   ImageIcon                 num1             = new ImageIcon(getClass().getResource("1.gif"));
-   ImageIcon                 num2             = new ImageIcon(getClass().getResource("2.gif"));
-   ImageIcon                 num3             = new ImageIcon(getClass().getResource("3.gif"));
-   ImageIcon                 num4             = new ImageIcon(getClass().getResource("4.gif"));
-   ImageIcon                 num5             = new ImageIcon(getClass().getResource("5.gif"));
-   ImageIcon                 num6             = new ImageIcon(getClass().getResource("6.gif"));
-   ImageIcon                 num7             = new ImageIcon(getClass().getResource("7.gif"));
-   ImageIcon                 num8             = new ImageIcon(getClass().getResource("8.gif"));
-   ImageIcon                 num9             = new ImageIcon(getClass().getResource("9.gif"));
-   ImageIcon                 blank            = new ImageIcon(getClass().getResource("blank.gif"));
+   ImageIcon                 num0;
+   ImageIcon                 num1;
+   ImageIcon                 num2;
+   ImageIcon                 num3;
+   ImageIcon                 num4;
+   ImageIcon                 num5;
+   ImageIcon                 num6;
+   ImageIcon                 num7;
+   ImageIcon                 num8;
+   ImageIcon                 num9;
+   ImageIcon                 blank;
 
    public Binary() {
       super(true); // Call constructor of parent
       // Standard layout (flow)
+      setupImages();
+      setupGUI();
+   }
+
+   private void setupGUI() {
       setLayout(new FlowLayout());
       // Set up two panels, control board and canvas
       board = new JPanel(true);
@@ -76,6 +75,20 @@ public class Binary extends JPanel implements ActionListener {
       canvas.add(outputarea); // add label to canvas
    }
 
+   private void setupImages() {
+      num0 = new ImageIcon(this.getClass().getResource("0.gif"));
+      num1 = new ImageIcon(this.getClass().getResource("1.gif"));
+      num2 = new ImageIcon(this.getClass().getResource("2.gif"));
+      num3 = new ImageIcon(this.getClass().getResource("3.gif"));
+      num4 = new ImageIcon(this.getClass().getResource("4.gif"));
+      num5 = new ImageIcon(this.getClass().getResource("5.gif"));
+      num6 = new ImageIcon(this.getClass().getResource("6.gif"));
+      num7 = new ImageIcon(this.getClass().getResource("7.gif"));
+      num8 = new ImageIcon(this.getClass().getResource("8.gif"));
+      num9 = new ImageIcon(this.getClass().getResource("9.gif"));
+      blank = new ImageIcon(this.getClass().getResource("blank.gif"));
+   }
+
    @Override
    public void actionPerformed(ActionEvent e) {
       if (e.getSource() == convert) {
@@ -93,11 +106,12 @@ public class Binary extends JPanel implements ActionListener {
                } while (binary != 0);
 
                outputarea.setText(answer1);
-               outputarea.setVisible(false);
+               outputarea.setVisible(true);
                // drawing the binary code
                for (int i = 0; i <= (answer1.length() - 1); i++) {
                   // answer1.charAt(i) is ASCII value for the integer 1
                   // convert character in string to numbered .gif file
+                  System.out.println(answer1.charAt(i));
                   ImageIcon image = new ImageIcon(answer1.charAt(i) + ".gif");
                   JLabel label = new JLabel(image); // rename images in src folder to numbers.
                   canvas.add(label);
@@ -107,9 +121,7 @@ public class Binary extends JPanel implements ActionListener {
                outputarea.setText("Invalid entry. Please enter a positive decimal number.");
                decimalstring.setText("");
             }
-         }
-
-         catch (Exception e1) {
+         } catch (Exception e1) {
             outputarea.setText("Invalid entry. Please enter a positive decimal number.");
             decimalstring.setText("");
          }
@@ -142,15 +154,15 @@ public class Binary extends JPanel implements ActionListener {
          }
          answer2 = "" + answer; // create final answer
          outputarea.setText(answer2);
-         outputarea.setVisible(false);
+         outputarea.setVisible(true);
          // loop to print images for the answer
          for (int count = 0; count <= (answer2.length() - 1); count++) {
             // convert character in string to match numbered .gif file
+            System.out.println(answer2.charAt(count));
             ImageIcon image = new ImageIcon(answer2.charAt(count) + ".gif");
             JLabel label = new JLabel(image); // display the number image in a label
             canvas.add(label); // add the label to the canvas
-            canvas.validate(); // needed to allow the reset button to
-            // function
+            canvas.validate(); // needed to allow the reset button to function
          }
       }
    }
