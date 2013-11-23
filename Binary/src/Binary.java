@@ -14,24 +14,34 @@ import javax.swing.JTextField;
 
 public class Binary extends JPanel implements ActionListener {
 
-   JPanel     board;                             // Panel for buttons
-   JPanel     canvas;                            // Panel for drawing on
-   JButton    convert;                           // buttons for the GUI
-   JButton    reset;
-   JButton    bindec;
-   JTextField decimalstring;                     // Input box
-   JLabel     outputarea;
-   ImageIcon  num0  = new ImageIcon("0.gif");
-   ImageIcon  num1  = new ImageIcon("1.gif");
-   ImageIcon  num2  = new ImageIcon("2.gif");
-   ImageIcon  num3  = new ImageIcon("3.gif");
-   ImageIcon  num4  = new ImageIcon("4.gif");
-   ImageIcon  num5  = new ImageIcon("5.gif");
-   ImageIcon  num6  = new ImageIcon("6.gif");
-   ImageIcon  num7  = new ImageIcon("7.gif");
-   ImageIcon  num8  = new ImageIcon("8.gif");
-   ImageIcon  num9  = new ImageIcon("9.gif");
-   ImageIcon  blank = new ImageIcon("blank.gif");
+   private static final long serialVersionUID = -2803257217038020759L;
+   JPanel                    board;                                                                    // Panel
+                                                                                                        // for
+                                                                                                        // buttons
+   JPanel                    canvas;                                                                   // Panel
+                                                                                                        // for
+                                                                                                        // drawing
+                                                                                                        // on
+   JButton                   convert;                                                                  // buttons
+                                                                                                        // for
+                                                                                                        // the
+                                                                                                        // GUI
+   JButton                   reset;
+   JButton                   bindec;
+   JTextField                decimalstring;                                                            // Input
+                                                                                                        // box
+   JLabel                    outputarea;
+   ImageIcon                 num0             = new ImageIcon(getClass().getResource("/images/0.gif"));
+   ImageIcon                 num1             = new ImageIcon(getClass().getResource("1.gif"));
+   ImageIcon                 num2             = new ImageIcon(getClass().getResource("2.gif"));
+   ImageIcon                 num3             = new ImageIcon(getClass().getResource("3.gif"));
+   ImageIcon                 num4             = new ImageIcon(getClass().getResource("4.gif"));
+   ImageIcon                 num5             = new ImageIcon(getClass().getResource("5.gif"));
+   ImageIcon                 num6             = new ImageIcon(getClass().getResource("6.gif"));
+   ImageIcon                 num7             = new ImageIcon(getClass().getResource("7.gif"));
+   ImageIcon                 num8             = new ImageIcon(getClass().getResource("8.gif"));
+   ImageIcon                 num9             = new ImageIcon(getClass().getResource("9.gif"));
+   ImageIcon                 blank            = new ImageIcon(getClass().getResource("blank.gif"));
 
    public Binary() {
       super(true); // Call constructor of parent
@@ -86,7 +96,7 @@ public class Binary extends JPanel implements ActionListener {
                outputarea.setVisible(false);
                // drawing the binary code
                for (int i = 0; i <= (answer1.length() - 1); i++) {
-                  char c = answer1.charAt(i); // ASCII value for the integer 1
+                  // answer1.charAt(i) is ASCII value for the integer 1
                   // convert character in string to numbered .gif file
                   ImageIcon image = new ImageIcon(answer1.charAt(i) + ".gif");
                   JLabel label = new JLabel(image); // rename images in src folder to numbers.
@@ -135,7 +145,6 @@ public class Binary extends JPanel implements ActionListener {
          outputarea.setVisible(false);
          // loop to print images for the answer
          for (int count = 0; count <= (answer2.length() - 1); count++) {
-            char c = answer2.charAt(count);
             // convert character in string to match numbered .gif file
             ImageIcon image = new ImageIcon(answer2.charAt(count) + ".gif");
             JLabel label = new JLabel(image); // display the number image in a label
