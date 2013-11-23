@@ -76,17 +76,17 @@ public class Binary extends JPanel implements ActionListener {
    }
 
    private void setupImages() {
-      num0 = new ImageIcon(this.getClass().getResource("0.gif"));
-      num1 = new ImageIcon(this.getClass().getResource("1.gif"));
-      num2 = new ImageIcon(this.getClass().getResource("2.gif"));
-      num3 = new ImageIcon(this.getClass().getResource("3.gif"));
-      num4 = new ImageIcon(this.getClass().getResource("4.gif"));
-      num5 = new ImageIcon(this.getClass().getResource("5.gif"));
-      num6 = new ImageIcon(this.getClass().getResource("6.gif"));
-      num7 = new ImageIcon(this.getClass().getResource("7.gif"));
-      num8 = new ImageIcon(this.getClass().getResource("8.gif"));
-      num9 = new ImageIcon(this.getClass().getResource("9.gif"));
-      blank = new ImageIcon(this.getClass().getResource("blank.gif"));
+      num0 = new ImageIcon("0.gif");
+      num1 = new ImageIcon("1.gif");
+      num2 = new ImageIcon("2.gif");
+      num3 = new ImageIcon("3.gif");
+      num4 = new ImageIcon("4.gif");
+      num5 = new ImageIcon("5.gif");
+      num6 = new ImageIcon("6.gif");
+      num7 = new ImageIcon("7.gif");
+      num8 = new ImageIcon("8.gif");
+      num9 = new ImageIcon("9.gif");
+      blank = new ImageIcon("blank.gif");
    }
 
    @Override
