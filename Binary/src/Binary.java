@@ -24,7 +24,7 @@ public class Binary extends JPanel {
    JButton                   reset;
    JButton                   binaryToDec;
    JTextField                userInput;
-   JLabel                    outputarea;
+   JLabel                    outputArea;
    ImageIcon                 num0;
    ImageIcon                 num1;
    ImageIcon                 num2;
@@ -79,14 +79,14 @@ public class Binary extends JPanel {
       });      // add text input box and printing label
       userInput = new JTextField(8);
       userInput.setBorder(BorderFactory.createLineBorder(Color.black));
-      outputarea = new JLabel("Please enter either a positive integer or a binary string");
+      outputArea = new JLabel("Please enter either a positive integer or a binary string");
       add(canvas);
       add(board);
       board.add(decToBinary); // add button to control panel
       board.add(binaryToDec); // add button to control panel
       board.add(userInput); // add label to control panel
       board.add(reset); // add reset button
-      canvas.add(outputarea); // add label to canvas
+      canvas.add(outputArea); // add label to canvas
    }
 
    protected void binaryConvert() {
@@ -97,6 +97,12 @@ public class Binary extends JPanel {
       String answer2;
       binary = userInput.getText();
       resetGui();
+      try {
+         validateBinaryInput(binary);
+      } catch (IllegalStateException ex) {
+         System.out.println("Binary format incorrect:: " + ex.getMessage());
+         return;
+      }
       // adjust value to count from 0
       length = binary.length() - 1;
       // set variable to increment by power of 2 for each pass through the loop
@@ -121,13 +127,28 @@ public class Binary extends JPanel {
       }
    }
 
+   private void validateBinaryInput(String binary) {
+      char[] letters = binary.toCharArray();
+      for (char c : letters) {
+         if ((c != '0') && (c != '1')) {
+            throw new IllegalStateException("Binary input can only be '1' or '0'.");
+         }
+      }
+   }
+
    protected void decimalConvert() {
       try {
-         int binary, answer;
+         int binary;
+         int answer;
          String answer1 = "";
          String intbinary = userInput.getText();
-         binary = Integer.parseInt(intbinary);
          resetGui();
+         try {
+            binary = Integer.parseInt(intbinary);
+         } catch (NumberFormatException nfe) {
+            System.out.println("Input is not a valid number:: " + nfe.getMessage());
+            return;
+         }
          if (binary >= 0) {
             do {
                answer = binary % 2;
@@ -143,11 +164,11 @@ public class Binary extends JPanel {
                canvas.validate();
             }
          } else {
-            outputarea.setText("Invalid entry. Please enter a positive decimal number.");
+            outputArea.setText("Invalid entry. Please enter a positive decimal number.");
             userInput.setText("");
          }
       } catch (Exception ex) {
-         outputarea.setText("Invalid entry. Please enter a positive decimal number.");
+         outputArea.setText("Invalid entry. Please enter a positive decimal number.");
          userInput.setText("");
          System.out.println("EXCEPTION:: " + ex);
       }
@@ -168,7 +189,7 @@ public class Binary extends JPanel {
    }
 
    protected void resetGui() {
-      outputarea.setText("");
+      outputArea.setText("");
       userInput.setText("");
       canvas.removeAll();
       canvas.repaint();
