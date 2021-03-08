@@ -69,20 +69,15 @@ public class BinaryDecimalConverter {
      * Action to convert the user supplied information from binary into decimal.
      */
     protected void binaryToDecimalConvert() {
-        boolean successfulConversion = convertAndPrint(new BinaryToDecimalConverter());
-        if (!successfulConversion) {
-            resetGui("Problem converting the supplied value into decimal.");
-        }
+        convertAndPrint(new BinaryToDecimalConverter());
+
     }
 
     /**
      * Action to convert the user supplied information from decimal into binary.
      */
     protected void decimalToBinaryConvert() {
-        boolean successfulConversion = convertAndPrint(new DecimalToBinaryConverter());
-        if (!successfulConversion) {
-            resetGui("Problem encountered converting from decimal to binary.");
-        }
+        convertAndPrint(new DecimalToBinaryConverter());
     }
 
     /**
@@ -95,6 +90,7 @@ public class BinaryDecimalConverter {
     private boolean convertAndPrint(Converter converter) {
         final ConversionResult result = converter.convert(userInputTxt.getText().trim());
         if (!result.wasSuccessful()) {
+            resetGui(result.getErrorMessage());
             return false;
         }
         printToScreen(result.getConversionResult());
