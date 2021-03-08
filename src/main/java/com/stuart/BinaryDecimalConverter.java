@@ -125,7 +125,7 @@ public class BinaryDecimalConverter {
      * @return JLabel containing the image, or a null if a problem was encountered.
      */
     private JLabel loadImageFromDisk(char fileName) {
-        // convert character in string to match numbered .gif file
+        // Use {@code fileName} to load matching numbered .gif file
         final String urlToLoad = "/images/" + fileName + ".gif";
         URL resource = BinaryDecimalConverter.class.getResource(urlToLoad);
         if (resource == null) {
