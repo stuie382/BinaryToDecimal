@@ -1,4 +1,6 @@
-package com.stuart;
+package com.stuart.converter;
+
+import com.stuart.dto.ConversionResult;
 
 /**
  * Converter implementation that will try to convert values into binary representation
@@ -37,6 +39,12 @@ public class BinaryToDecimalConverter implements Converter {
     }
 
     private boolean validateBinaryInput(final String binary) {
+        if (null == binary) {
+            return false;
+        }
+        if (binary.isEmpty() || binary.isBlank()) {
+            return false;
+        }
         char[] letters = binary.toCharArray();
         for (char c : letters) {
             if ((c != '0') && (c != '1')) {

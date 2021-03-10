@@ -1,4 +1,9 @@
-package com.stuart;
+package com.stuart.view;
+
+import com.stuart.converter.BinaryToDecimalConverter;
+import com.stuart.dto.ConversionResult;
+import com.stuart.converter.Converter;
+import com.stuart.converter.DecimalToBinaryConverter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +13,7 @@ public class BinaryDecimalConverter {
 
     private static final String INSTRUCTIONS =
             "Please enter either a positive integer or a binary string.";
+    public static final String IMAGE_DIR = "/images/";
     private final JPanel baseArea = new JPanel();
     private final JPanel displayArea = new JPanel();
     private final JPanel controlArea = new JPanel();
@@ -85,16 +91,14 @@ public class BinaryDecimalConverter {
      * conversion to the screen.
      *
      * @param converter - An implementation of the {@link Converter} interface
-     * @return True if the conversion was successful, else false
      */
-    private boolean convertAndPrint(Converter converter) {
+    private void convertAndPrint(Converter converter) {
         final ConversionResult result = converter.convert(userInputTxt.getText().trim());
         if (!result.wasSuccessful()) {
             resetGui(result.getErrorMessage());
-            return false;
+            return;
         }
         printToScreen(result.getConversionResult());
-        return true;
     }
 
     /**
@@ -122,7 +126,7 @@ public class BinaryDecimalConverter {
      */
     private JLabel loadImageFromDisk(char fileName) {
         // Use {@code fileName} to load matching numbered .gif file
-        final String urlToLoad = "/images/" + fileName + ".gif";
+        final String urlToLoad = IMAGE_DIR + fileName + ".gif";
         URL resource = BinaryDecimalConverter.class.getResource(urlToLoad);
         if (resource == null) {
             resetGui("Couldn't find the correct file to display.");

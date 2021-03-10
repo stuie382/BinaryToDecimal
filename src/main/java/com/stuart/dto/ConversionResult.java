@@ -1,4 +1,4 @@
-package com.stuart;
+package com.stuart.dto;
 
 public class ConversionResult {
     private final boolean wasSuccessful;

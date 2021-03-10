@@ -1,4 +1,6 @@
-package com.stuart;
+package com.stuart.converter;
+
+import com.stuart.dto.ConversionResult;
 
 /**
  * Converter implementation that will attempt to convert the input into it's decimal representation.
@@ -23,14 +25,14 @@ public class DecimalToBinaryConverter implements Converter {
                         "",
                         "Input must be positive");
             }
-            String convertedOutput = "";
+            StringBuilder convertedOutput = new StringBuilder();
             do {
                 int answer = decimalInput % 2;
-                convertedOutput = answer + "" + convertedOutput;
+                convertedOutput.insert(0, answer + "");
                 decimalInput /= 2;
             } while (decimalInput != 0);
 
-            return new ConversionResult(true, convertedOutput, "");
+            return new ConversionResult(true, convertedOutput.toString(), "");
 
         } catch (NumberFormatException nfe) {
             return new ConversionResult(false,
