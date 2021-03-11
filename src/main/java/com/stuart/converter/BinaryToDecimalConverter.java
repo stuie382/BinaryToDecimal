@@ -27,7 +27,6 @@ public class BinaryToDecimalConverter implements Converter {
         final int length = input.length() - 1;
         // set variable to increment by power of 2 for each pass through the loop
         int incrementedValue = (int) Math.pow(2, length);
-        // cast the double as an integer
         for (int count = 0; count <= length; count++) {
             // set through binary string
             if (input.charAt(count) == 49) {

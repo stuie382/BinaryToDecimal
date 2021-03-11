@@ -7,48 +7,53 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
-class BinaryToDecimalConverterTest {
+class DecimalToBinaryConverterTest {
 
     private Converter uut;
 
     @BeforeEach
     void setUp() {
-        uut = new BinaryToDecimalConverter();
+        uut = new DecimalToBinaryConverter();
     }
 
     @AfterEach
     void tearDown() {
     }
 
+
     @Test
-    public void testUnsuccessfulForNullInput() {
+    void testUnsuccessfulForNullInput() {
         ConversionResult result = uut.convert(null);
         assertFalse(result.wasSuccessful());
+        assertEquals("Input is not a valid number", result.getErrorMessage());
     }
 
     @Test
     void testUnsuccessfulForEmptyInput() {
         ConversionResult result = uut.convert("");
         assertFalse(result.wasSuccessful());
+        assertEquals("Input is not a valid number", result.getErrorMessage());
     }
 
     @Test
     void testUnsuccessfulForNewLineInput() {
         ConversionResult result = uut.convert("\n");
         assertFalse(result.wasSuccessful());
-    }
-
-    @Test
-    void testUnsuccessfulForNonBinaryNumberInput() {
-        ConversionResult result = uut.convert("2");
-        assertFalse(result.wasSuccessful());
+        assertEquals("Input is not a valid number", result.getErrorMessage());
     }
 
     @Test
     void testUnsuccessfulForAlphaInput() {
         ConversionResult result = uut.convert("abc");
         assertFalse(result.wasSuccessful());
+        assertEquals("Input is not a valid number", result.getErrorMessage());
+    }
+
+    @Test
+    void testUnsuccessfulForNegativeInput() {
+        ConversionResult result = uut.convert("-123");
+        assertFalse(result.wasSuccessful());
+        assertEquals("Input must be positive", result.getErrorMessage());
     }
 
     @Test
@@ -66,9 +71,9 @@ class BinaryToDecimalConverterTest {
     }
 
     @Test
-    void testOutput255WhenInputMax() {
-        ConversionResult result = uut.convert("11111111");
-        assertTrue(result.wasSuccessful());
-        assertEquals("255", result.getConversionResult());
+    void testOutput11111111WhenInput255() {
+        ConversionResult result = uut.convert("255");
+        assertTrue(result.wasSuccessful());;
+        assertEquals("11111111", result.getConversionResult());
     }
 }
