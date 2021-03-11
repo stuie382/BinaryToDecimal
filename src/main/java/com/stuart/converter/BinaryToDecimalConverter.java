@@ -1,4 +1,6 @@
-package com.stuart;
+package com.stuart.converter;
+
+import com.stuart.dto.ConversionResult;
 
 /**
  * Converter implementation that will try to convert values into binary representation
@@ -25,7 +27,6 @@ public class BinaryToDecimalConverter implements Converter {
         final int length = input.length() - 1;
         // set variable to increment by power of 2 for each pass through the loop
         int incrementedValue = (int) Math.pow(2, length);
-        // cast the double as an integer
         for (int count = 0; count <= length; count++) {
             // set through binary string
             if (input.charAt(count) == 49) {
@@ -37,6 +38,12 @@ public class BinaryToDecimalConverter implements Converter {
     }
 
     private boolean validateBinaryInput(final String binary) {
+        if (null == binary) {
+            return false;
+        }
+        if (binary.isEmpty() || binary.isBlank()) {
+            return false;
+        }
         char[] letters = binary.toCharArray();
         for (char c : letters) {
             if ((c != '0') && (c != '1')) {

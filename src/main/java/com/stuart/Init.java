@@ -1,5 +1,7 @@
 package com.stuart;
 
+import com.stuart.view.BinaryDecimalConverter;
+
 import javax.swing.*;
 
 public class Init {

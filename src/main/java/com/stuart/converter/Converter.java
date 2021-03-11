@@ -1,4 +1,6 @@
-package com.stuart;
+package com.stuart.converter;
+
+import com.stuart.dto.ConversionResult;
 
 /**
  * Interface to allow conversions.
